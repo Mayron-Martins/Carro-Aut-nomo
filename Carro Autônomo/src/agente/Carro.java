@@ -26,9 +26,12 @@ public class Carro {
 		if(limiteDaEstrada()) {
 			return;
 		}
+		if(this.estrada.retornarValordaPosicaodaEstrada(getPosicaoXY().getPosicaoY()+1, getPosicaoXY().getPosicaoX()).equals("-O-")==false) {
+			this.movimentacaoDoCarro = Movimentacao.FRENTE;
+		}
 		
 		PosicaoXY proximoMovimento = retornarPosicao();
-		String valor = this.estrada.retornarValordaPosicaodaEstrada(proximoMovimento);
+		String valor = this.estrada.retornarValordaPosicaodaEstrada(retornarPosicao());
 		
 		
 		
@@ -52,29 +55,16 @@ public class Carro {
 		break;
 		
 		case FRENTE:
-			if(this.estrada.retornarValordaPosicaodaEstrada(getPosicaoXY().getPosicaoY()+1, getPosicaoXY().getPosicaoX()).equals("-O-")) {
 				this.movimentacaoDoCarro = Movimentacao.ESQUERDA;
-			}
 		break;
 		
 		case ESQUERDA:
-			if(this.estrada.retornarValordaPosicaodaEstrada(getPosicaoXY().getPosicaoY()+1, getPosicaoXY().getPosicaoX()).equals("-O-")) {
 				this.movimentacaoDoCarro = Movimentacao.DIREITA;
-			}
 				
-			else {
-				this.movimentacaoDoCarro = Movimentacao.FRENTE;
-			}	
 		break;
 		
 		case DIREITA:	
-			if(this.estrada.retornarValordaPosicaodaEstrada(getPosicaoXY().getPosicaoY()+1, getPosicaoXY().getPosicaoX()).equals("-O-")) {
 				this.movimentacaoDoCarro = Movimentacao.ESQUERDA;
-			}
-					
-			else {
-				this.movimentacaoDoCarro = Movimentacao.FRENTE;
-			}	
 		}
 	}
 	
@@ -121,7 +111,8 @@ public class Carro {
 		this.pilhaDeMovimentos = 0;
 	}
 	
-	public void setPosicaoXY(PosicaoXY posicaoXY) {
+	public void setPosicaoXY(int posicaoY, int posicaoX) {
+		PosicaoXY posicaoXY = new PosicaoXY(posicaoY, posicaoX);
 		this.posicaoXY = posicaoXY;
 	}
 	

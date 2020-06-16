@@ -8,13 +8,15 @@ import posicao.PosicaoXY;
 public class Obstaculos {
 	private Caminho estrada;
 	private PosicaoXY posicaoXY;
+	private int quantObstaculos;
+	private int maxObstaculos;
 	
 	public Obstaculos(Caminho estrada) {
 		this.estrada = estrada;
 		posicaoXY = new PosicaoXY();
 		this.aleatoriedadeDosObstaculos();
-		//System.out.println(" "+posicaoXY.getPosicaoX()+ " "+posicaoXY.getPosicaoY());
 		estrada.setObstaculos(this);
+		this.quantObstaculos=1;
 	}
 	
 	
@@ -42,11 +44,19 @@ public class Obstaculos {
 	}
 	
 	public void gerarObstaculos() {
-		Obstaculos novoObstaculo = new Obstaculos(this.estrada);
+		if(this.quantObstaculos<this.maxObstaculos) {
+			Obstaculos novoObstaculo = new Obstaculos(this.estrada);
+			this.quantObstaculos++;
+		}
+		
 	}
 	
 	public PosicaoXY getPosicaoXYObstaculos () {
 		return this.posicaoXY;
+	}
+	
+	public void setMaximoDeObstaculos(int maximo) {
+		this.maxObstaculos=maximo;
 	}
 	
 }

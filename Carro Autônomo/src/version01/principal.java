@@ -10,10 +10,11 @@ public class principal {
 		Caminho caminho = new Caminho(5);
 		caminho.exibirEstrada();
 		Carro carro = new Carro(caminho);
+		//carro.setPosicaoXY(0,2);
 		Obstaculos obstaculos = new Obstaculos(caminho);
+		obstaculos.setMaximoDeObstaculos(3);
 		
-		
-		while(carro.dirigindo()&&carro.limiteDaEstrada()==false) {
+		while(carro.dirigindo() && carro.limiteDaEstrada()==false) {
 			carro.zerarPilha();
 			obstaculos.gerarObstaculos();
 			carro.movimentar();
