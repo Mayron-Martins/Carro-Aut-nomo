@@ -19,7 +19,7 @@ public class Obstaculos {
 		this.quantObstaculos=1;
 	}
 	
-	
+	//Define uma posição aleatória dentro da estrada para o obstáculo
 	private void aleatoriedadeDosObstaculos() {
 		int inicioY = 1;
 		int inicioX=0;
@@ -43,6 +43,8 @@ public class Obstaculos {
 		
 	}
 	
+	//Cria novos obstáculos pela estrada, necessário medir valor conforme tamanho da estrada
+	//Muitos obstáculos para um percurso pequeno resultam em erro
 	public void gerarObstaculos() {
 		if(this.quantObstaculos<this.maxObstaculos) {
 			Obstaculos novoObstaculo = new Obstaculos(this.estrada);
@@ -51,10 +53,12 @@ public class Obstaculos {
 		
 	}
 	
+	//Posicao do Obstáculo
 	public PosicaoXY getPosicaoXYObstaculos () {
 		return this.posicaoXY;
 	}
 	
+	//Seta o valor máximo de obstáculos para a estrada
 	public void setMaximoDeObstaculos(int maximo) {
 		this.maxObstaculos=maximo;
 	}

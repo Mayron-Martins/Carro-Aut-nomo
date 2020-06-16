@@ -13,7 +13,7 @@ public class Caminho {
 	private ArrayList<Obstaculos> obstaculos = new ArrayList<Obstaculos>();
 	
 	//Valores
-	//E - caminho Livre
+	//. - caminho Livre
 	//-O- - Obstáculo
 	//*C* - Carro
 	
@@ -38,15 +38,19 @@ public class Caminho {
 		atualizarPosicaoAgente();
 		for(int linha=0; linha<tamanhodopercurso; linha++) {
 			for(int coluna=0; coluna<larguraDaEstrada; coluna++) {
+				//Caso o agente ou o obstáculo estejam no canto direito
 				if((this.percurso[linha][coluna].equals("*C*")||this.percurso[linha][coluna].equals("-O-"))&&coluna==0)
 					System.out.print("|"+this.percurso[linha][coluna]+" ");
 				else {
+					//Caso o agente ou obstáculo estejam no canto esquerdo
 					if((this.percurso[linha][coluna].equals("*C*")||this.percurso[linha][coluna].equals("-O-"))&&coluna==larguraDaEstrada-1)
 						System.out.print(" "+this.percurso[linha][coluna]+"|");
 					else {
+						//Caso o agente ou o obstáculo estejam em outras posições
 						if(this.percurso[linha][coluna].equals("*C*")||this.percurso[linha][coluna].equals("-O-"))
 							System.out.print(" "+this.percurso[linha][coluna]+" ");
 						else {
+							//Estrada
 							if(coluna==0)
 								System.out.print("| "+this.percurso[linha][coluna]+"  ");
 							else {
@@ -72,6 +76,7 @@ public class Caminho {
 		}
 	}
 	
+	//Mostra todos os obstáculos conforme os constrói
 	public void exibirObstaculos() {
 		for(int i=0; i<obstaculos.size(); i++) {
 			if(this.obstaculos.get(i)!=null) {
@@ -90,23 +95,26 @@ public class Caminho {
 		return this.larguraDaEstrada;
 	}
 	
-	
+	//Retorna o valor correspondete a uma dada posição da pista
 	public String retornarValordaPosicaodaEstrada(PosicaoXY posicaoXY) {
 		return this.percurso[posicaoXY.getPosicaoY()][posicaoXY.getPosicaoX()];
 	}
-
+	
 	public String retornarValordaPosicaodaEstrada(int posicaoY, int posicaoX) {
 		return this.percurso[posicaoY][posicaoX];
 	}
 	
+	//Incorpora o carro à estrada
 	public void setCarro(Carro carro) {
 		this.carro = carro;
 	}
 	
+	//Incorpora obstáculo por obstáculo à estrada
 	public void setObstaculos (Obstaculos obstaculos) {
 		this.obstaculos.add(obstaculos);
 	}
 	
+	//Troca o símbolo do carro pelo da estrada após ele ter passado
 	public void limparRastro() {
 		PosicaoXY posicao = this.carro.getPosicaoXY();
 		this.percurso[posicao.getPosicaoY()][posicao.getPosicaoX()] = ".";
